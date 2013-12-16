@@ -25,6 +25,13 @@ class Controller extends CController
 	 */        
         public $informations = array();
         
+        /*
+         * language path
+         */
+        public $language_path;
+        
+        
+        
         public function init()
 	{
             // TODO: filter by store
@@ -33,4 +40,17 @@ class Controller extends CController
             $criteria->order = 'sort_order ASC'; 
             $this->informations = Information::model()->findAll($criteria);
 	}
+	
+	/*
+         * get language 
+         * example to use:
+         * <pre>
+         * $this->language_path = 'product/index';
+         * $this->pageTitle = $this->t('heading_title');
+         * </pre>
+         */
+        public function t($message){
+            return Yii::t($this->language_path, $message);            
+        }
+        
 }
